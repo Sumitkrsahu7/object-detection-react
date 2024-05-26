@@ -1,0 +1,68 @@
+.object-detection-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+  
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+  
+  .object-detection-labels {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .object-detection-label {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .object-detection-class {
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+  
+  .object-detection-score {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .object-detection-fullscreen-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background: rgba(0, 255, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 4;
+  }
