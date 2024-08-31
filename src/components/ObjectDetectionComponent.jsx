@@ -3,6 +3,7 @@ import * as tf from '@tensorflow/tfjs';
 import * as cocoSsd from '@tensorflow-models/coco-ssd';
 import './ObjectDetection.css';
 import AudioGenerationModule from './AudioGenerationModule';
+import { useNavigate } from 'react-router-dom'; 
 
 const ObjectDetectionComponent = () => {
   const [detectedObjects, setDetectedObjects] = useState([]);
@@ -13,6 +14,7 @@ const ObjectDetectionComponent = () => {
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const modelRef = useRef(null);
+  const navigate = useNavigate(); // Initialize the navigate function
 
   useEffect(() => {
     const startVideoStream = async () => {
@@ -107,7 +109,6 @@ const ObjectDetectionComponent = () => {
     const video = videoRef.current;
     const videoWidth = video.videoWidth;
     const videoHeight = video.videoHeight;
-    const aspectRatio = videoWidth / videoHeight;
 
     predictions.forEach(prediction => {
       const [x, y, width, height] = prediction.bbox;
@@ -126,6 +127,10 @@ const ObjectDetectionComponent = () => {
       ctx.font = '16px Arial';
       ctx.fillText(prediction.class, adjustedX + (adjustedWidth - textWidth) / 2, adjustedY - 5); // Adjust text position based on text width
     });
+  };
+
+  const handleGoBack = () => {
+    navigate(-1); 
   };
 
   const speakDetectedObjects = (predictions) => {
@@ -151,6 +156,9 @@ const ObjectDetectionComponent = () => {
       <button className="camera-toggle-button button-name" onClick={handleToggleCamera}>{isCameraOn ? 'Turn Off Camera' : 'Turn On Camera'}</button>
       {/* Integrate AudioGenerationModule */}
       <AudioGenerationModule detectedObjects={detectedObjects} />
+      <div>
+      <button onClick={handleGoBack} className="button">Go Back</button>
+      </div>
     </div>
   );
 };
